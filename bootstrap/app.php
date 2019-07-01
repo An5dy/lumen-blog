@@ -61,9 +61,9 @@ $app->singleton(
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -77,11 +77,12 @@ $app->singleton(
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\ScwsServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Overtrue\LaravelLang\TranslationServiceProvider::class);
 if ($app->environment() !== 'production') {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
@@ -95,6 +96,7 @@ if ($app->environment() !== 'production') {
 
 $app->configure('app');
 $app->configure('api');
+$app->configure('jwt');
 $app->configure('database');
 
 /*
