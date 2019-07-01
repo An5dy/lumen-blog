@@ -1,16 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
+$apiConfig = config('api');
+$api = app('Dingo\Api\Routing\Router');
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$api->version($apiConfig['version'], [
+    'namespace' => 'App\\Http\\Controllers',
+], function ($api) {
+    $api->get('categories', 'CategoriesController@index');
+    $api->post('categories', 'CategoriesController@store');
+    $api->patch('categories/{category}', 'CategoriesController@update');
+    $api->delete('categories/{category}', 'CategoriesController@destroy');
 });
