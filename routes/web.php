@@ -10,4 +10,9 @@ $api->version($apiConfig['version'], [
     $api->post('categories', 'CategoriesController@store');
     $api->patch('categories/{category}', 'CategoriesController@update');
     $api->delete('categories/{category}', 'CategoriesController@destroy');
+    $api->get('articles', 'ArticlesController@index');
+    $api->post('articles', 'ArticlesController@store');
+    $api->get('articles/{article}', 'ArticlesController@show');
+    $api->patch('articles/{article}', 'ArticlesController@update');
+    $api->delete('articles/{article}', 'ArticlesController@destroy');
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 
@@ -12,20 +13,38 @@ class ArticleRequest extends BaseRequest
         switch ($this->method()) {
             case 'POST':
                 return [
-                    'title' => 'bail|required|string|unique:categories|max:255',
+                    'category_id' => $this->categoryIdValidateRules(),
+                    'title' => 'bail|required|string|unique:articles|max:255',
+                    'main' => 'bail|required|string',
                 ];
             case 'PUT':
             case 'PATCH':
-                $id = Arr::last($this->route())['category'];
+                $id = Arr::last($this->route())['article'];
                 return [
+                    'category_id' => $this->categoryIdValidateRules(),
                     'title' => [
                         'bail',
                         'required',
                         'string',
-                        Rule::unique('categories')->ignore($id),
+                        Rule::unique('articles')->ignore($id),
                         'max:255',
                     ],
+                    'main' => 'bail|required|string',
                 ];
         }
+    }
+
+    protected function categoryIdValidateRules()
+    {
+        return [
+            'bail',
+            'required',
+            'integer',
+            function ($attribute, $value, $fail) {
+                if (!Category::query()->find($value)) {
+                    return $fail('文章分类不存在');
+                }
+            },
+        ];
     }
 }

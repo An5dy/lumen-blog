@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Services\CategoryService;
-use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryCollection;
 
 class CategoriesController extends Controller
@@ -16,14 +16,14 @@ class CategoriesController extends Controller
         return (new CategoryCollection($categories))->withMessage('分类获取成功');
     }
 
-    public function store(ArticleRequest $request)
+    public function store(CategoryRequest $request)
     {
         Category::query()->create($request->only('title'));
 
         return $this->response->created();
     }
 
-    public function update(CategoryService $categoryService, ArticleRequest $request, $id)
+    public function update(CategoryService $categoryService, CategoryRequest $request, $id)
     {
         $article = $categoryService->findCategoryByPrimaryKey($id);
         $article->update($request->only('title'));
