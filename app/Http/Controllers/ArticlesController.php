@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Jobs\GenerateTags;
 use Illuminate\Http\Request;
+use App\Events\ArticleSkimmed;
 use App\Services\ArticleService;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
@@ -37,6 +38,8 @@ class ArticlesController extends Controller
     {
         $article = $articleService->findArticleByPrimaryKey($id);
         $article->load('category', 'tags');
+
+        event(new ArticleSkimmed($article));
 
         return (new ArticleResource($article))->withMessage('文章获取成功');
     }
