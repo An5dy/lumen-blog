@@ -10,7 +10,9 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->string('title')
+                ->unique()
+                ->comment('文章标签标题');
         });
     }
 

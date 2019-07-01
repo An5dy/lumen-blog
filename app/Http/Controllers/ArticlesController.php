@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Jobs\GenerateTags;
 use Illuminate\Http\Request;
 use App\Services\ArticleService;
 use App\Http\Requests\ArticleRequest;
@@ -14,7 +15,7 @@ class ArticlesController extends Controller
     public function index(Request $request)
     {
         $articles = Article::query()
-            ->with(['category'])
+            ->with(['category', 'tags'])
             ->when($title = $request->get('title', null), function ($query) use ($title) {
                 $query->title($title);
             })
@@ -26,7 +27,8 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        Article::query()->create($request->only(['title', 'main', 'category_id']));
+        $article = Article::query()->create($request->only(['title', 'main', 'category_id']));
+        $this->dispatch(new GenerateTags($article));
 
         return $this->response->created();
     }
@@ -34,7 +36,7 @@ class ArticlesController extends Controller
     public function show(ArticleService $articleService, $id)
     {
         $article = $articleService->findArticleByPrimaryKey($id);
-        $article->load('category');
+        $article->load('category', 'tags');
 
         return (new ArticleResource($article))->withMessage('文章获取成功');
     }
@@ -43,6 +45,7 @@ class ArticlesController extends Controller
     {
         $article = $articleService->findArticleByPrimaryKey($id);
         $article->update($request->only(['title', 'main', 'category_id']));
+        $this->dispatch(new GenerateTags($article));
 
         return $this->response->noContent();
     }
