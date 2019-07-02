@@ -15,4 +15,6 @@ $api->version($apiConfig['version'], [
     $api->get('articles/{article}', 'ArticlesController@show');
     $api->patch('articles/{article}', 'ArticlesController@update');
     $api->delete('articles/{article}', 'ArticlesController@destroy');
+
+    $api->post('auth/login', 'AuthController@login');
 });

@@ -168,7 +168,7 @@ return [
     */
 
     'auth' => [
-
+        'jwt' => Tymon\JWTAuth\Providers\JWT::class
     ],
 
     /*

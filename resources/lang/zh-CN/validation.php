@@ -174,5 +174,6 @@ return [
         'available'             => '可用的',
         'size'                  => '大小',
         'category_id'           => '文章分类',
+        'account'               => '账号',
     ],
 ];

@@ -4,7 +4,7 @@ namespace App\Events;
 
 use App\Models\Article;
 
-class ArticleSkimmed extends Event
+class ArticleSkimmedEvent extends Event
 {
     protected $article;
 

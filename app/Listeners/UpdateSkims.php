@@ -3,12 +3,12 @@
 namespace App\Listeners;
 
 use Illuminate\Http\Request;
-use App\Events\ArticleSkimmed;
+use App\Events\ArticleSkimmedEvent;
 use Illuminate\Support\Facades\Redis;
 
 class UpdateSkims
 {
-    public function handle(ArticleSkimmed $event)
+    public function handle(ArticleSkimmedEvent $event)
     {
         $article = $event->getArticle();
 
