@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\LoginEvent;
-use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\AuthRequest;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\TokenResource;
 
 class AuthController extends Controller
@@ -14,12 +13,31 @@ class AuthController extends Controller
     {
         $credentials = $request->only(['account', 'password']);
 
-        if ($token = Auth::attempt($credentials)) {
-            event(new LoginEvent(Auth::user(), $token));
+        if ($token = JWTAuth::attempt($credentials)) {
+            event(new LoginEvent(JWTAuth::user(), $token));
 
             return (new TokenResource(compact('token')))->withMessage('登录成功');
         }
 
-        return $this->response->errorUnauthorized('用户名或密码错误');
+        $this->response->errorUnauthorized('用户名或密码错误');
+    }
+
+    public function refresh()
+    {
+        try {
+            $token = JWTAuth::parseToken()->refresh();
+
+            return (new TokenResource(compact('token')))->withMessage('token 刷新成功');
+        } catch (\Exception $exception) {
+
+            $this->response->error('token 刷新失败', 500);
+        }
+    }
+
+    public function logout()
+    {
+        JWTAuth::parseToken()->invalidate();
+
+        return $this->response->noContent();
     }
 }

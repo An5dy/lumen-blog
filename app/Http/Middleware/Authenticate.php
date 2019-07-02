@@ -3,10 +3,13 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Dingo\Api\Routing\Helpers;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
 class Authenticate
 {
+    use Helpers;
+
     /**
      * The authentication guard factory instance.
      *
@@ -36,7 +39,7 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+            $this->response->errorUnauthorized('用户认证失败');
         }
 
         return $next($request);

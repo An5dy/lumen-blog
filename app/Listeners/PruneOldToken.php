@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\LoginEvent;
-use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PruneOldToken
 {
@@ -12,7 +12,7 @@ class PruneOldToken
         $user = $event->getUser();
 
         if ($token = $user->api_token) {
-            $oldToken = Auth::setToken($token);
+            $oldToken = JWTAuth::setToken($token);
             if ($oldToken->check()) {
                 $oldToken->invalidate();// 旧 token 失效
             }
