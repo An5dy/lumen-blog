@@ -8,7 +8,7 @@ $api->version($apiConfig['version'], [
 ], function ($api) {
     $api->post('login', 'AuthController@login');
     $api->post('refresh', 'AuthController@refresh');
-    $api->group(['middleware' => 'auth'], function ($api) {
+    $api->group(['middleware' => 'refresh'], function ($api) {
         $api->get('me', 'UserController@me');
         $api->post('logout', 'AuthController@logout');
         $api->post('categories', 'CategoriesController@store');

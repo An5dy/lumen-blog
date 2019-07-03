@@ -6,6 +6,7 @@ use App\Events\LoginEvent;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\AuthRequest;
 use App\Http\Resources\TokenResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -16,7 +17,10 @@ class AuthController extends Controller
         if ($token = JWTAuth::attempt($credentials)) {
             event(new LoginEvent(JWTAuth::user(), $token));
 
-            return (new TokenResource(compact('token')))->withMessage('登录成功');
+            return response()->json([
+                'message' => '登录成功',
+                'status_code' => Response::HTTP_OK,
+            ])->cookie(cookie_token($token));
         }
 
         $this->response->errorUnauthorized('用户名或密码错误');
