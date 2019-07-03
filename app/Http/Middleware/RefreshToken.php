@@ -22,8 +22,7 @@ class RefreshToken extends BaseMiddleware
             throw new UnauthorizedHttpException('jwt-auth', '用户认证失败');
         } catch (TokenExpiredException $exception) {
             try {
-                // 刷新 token
-                $token = $this->auth->refresh();
+                $token = $this->auth->parseToken()->refresh();// 刷新 token
                 // 用户 ID
                 $userId = $this->auth
                     ->manager()

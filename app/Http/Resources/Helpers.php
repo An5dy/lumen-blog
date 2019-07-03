@@ -13,8 +13,8 @@ trait Helpers
     public function with($request): array
     {
         return [
-            'message' => $this->message,
-            'status_code' => $this->statusCode,
+            'message'       => $this->message,
+            'status_code'   => $this->statusCode,
         ];
     }
 

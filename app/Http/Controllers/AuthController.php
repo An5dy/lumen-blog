@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\LoginEvent;
+use App\Events\LogoutEvent;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\AuthRequest;
-use App\Http\Resources\TokenResource;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -26,20 +26,9 @@ class AuthController extends Controller
         $this->response->errorUnauthorized('用户名或密码错误');
     }
 
-    public function refresh()
-    {
-        try {
-            $token = JWTAuth::parseToken()->refresh();
-
-            return (new TokenResource(compact('token')))->withMessage('token 刷新成功');
-        } catch (\Exception $exception) {
-
-            $this->response->error('token 刷新失败', 500);
-        }
-    }
-
     public function logout()
     {
+        event(new LogoutEvent(JWTAuth::user()));
         JWTAuth::parseToken()->invalidate();
 
         return $this->response->noContent();
