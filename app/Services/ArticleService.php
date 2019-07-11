@@ -8,9 +8,9 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ArticleService
 {
-    public function findArticleByPrimaryKey($primaryKey)
+    public function findArticleByPrimaryKey($primaryKey, array $columns = ['*'])
     {
-        $article = Article::query()->find($primaryKey);
+        $article = Article::query()->find($primaryKey, $columns);
 
         if (empty($article)) {
             throw new HttpException(Response::HTTP_NOT_FOUND, '文章不存在');

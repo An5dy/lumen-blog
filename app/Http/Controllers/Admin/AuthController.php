@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Events\LoginEvent;
 use App\Events\LogoutEvent;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\AuthRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\TokenResource;
 
 class AuthController extends Controller

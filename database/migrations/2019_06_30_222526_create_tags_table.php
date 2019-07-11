@@ -10,9 +10,12 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')
-                ->unique()
-                ->comment('文章标签标题');
+            $table->unsignedBigInteger('article_id');
+            $table->foreign('article_id')
+                ->references('id')
+                ->on('articles')
+                ->onDelete('cascade');
+            $table->string('title')->comment('文章标签标题');
         });
     }
 

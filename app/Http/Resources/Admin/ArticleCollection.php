@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Admin;
 
+use App\Http\Resources\Helpers;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\TagResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ArticleCollection extends ResourceCollection
@@ -15,17 +18,14 @@ class ArticleCollection extends ResourceCollection
                 return [
                     'id'            => $item->id,
                     'title'         => $item->title,
-                    'main'          => $item->main,
                     'skims'         => $item->skims,
                     'likes'         => $item->likes,
                     'comments'      => $item->comments,
-                    'created_at'    => $item->created_at->toFormattedDateString(),
+                    'is_publish'    => $item->is_publish,
+                    'created_at'    => $item->created_at->toDateTimeString(),
                     'category'      => CategoryResource::make($item->category),
                     'tags'          => $item->tags->map(function ($tag) {
-                        return [
-                            'id'    => $tag->id,
-                            'title' => $tag->title,
-                        ];
+                        return TagResource::make($tag);
                     }),
                 ];
             })

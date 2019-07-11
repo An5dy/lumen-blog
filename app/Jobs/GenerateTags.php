@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Tag;
 use App\Facades\Scws;
 use App\Models\Article;
 
@@ -17,13 +16,10 @@ class GenerateTags extends Job
 
     public function handle()
     {
-        $tops = Scws::sendText($this->article->main)->getTops(3);
+        $tops = Scws::sendText($this->article->main)->getTops(5);
 
-        $data = [];
         foreach ($tops as $top) {
-            $data[] = Tag::query()->firstOrCreate(['title' => $top['word']])->id;
+            $this->article->tags()->firstOrCreate(['title' => $top['word']]);
         }
-
-        $this->article->tags()->sync($data);
     }
 }
