@@ -28,6 +28,8 @@ $api->version($apiConfig['version'], [
         $api->patch('categories/{category}', 'CategoriesController@update');
         $api->delete('categories/{category}', 'CategoriesController@destroy');
         $api->delete('tags/{tag}', 'TagController');
+        $api->get('about', 'AboutController@index');
+        $api->post('about', 'AboutController@updateOrCreate');
         $api->post('logout', 'AuthController@logout');
     });
 });

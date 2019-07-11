@@ -10,9 +10,6 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedTinyInteger('type')
-                ->default(1)
-                ->comment('文章类型，默认 1 普通文章');
             $table->boolean('is_publish')
                 ->default(0)
                 ->comment('是否发布，默认 0 不发布');
