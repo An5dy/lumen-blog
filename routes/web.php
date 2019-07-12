@@ -30,6 +30,10 @@ $api->version($apiConfig['version'], [
         $api->delete('tags/{tag}', 'TagController');
         $api->get('about', 'AboutController@index');
         $api->post('about', 'AboutController@updateOrCreate');
+        $api->post('password', 'AuthController@password');
+    });
+
+    $api->group(['middleware' => 'auth'], function ($api) {
         $api->post('logout', 'AuthController@logout');
     });
 });

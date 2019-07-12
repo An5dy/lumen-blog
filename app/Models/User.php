@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     protected $hidden = [
-        'password',
+        'password', 'api_token'
     ];
 
     public function getJWTIdentifier()

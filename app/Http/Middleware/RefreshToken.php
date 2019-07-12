@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -33,6 +34,9 @@ class RefreshToken extends BaseMiddleware
                 // 如果捕获到此异常，即代表 refresh 也过期了，用户无法刷新令牌，需要重新登录。
                 throw new UnauthorizedHttpException('jwt-auth', '用户认证失败');
             }
+        } catch (TokenBlacklistedException $exception) {
+            // token 已拉入黑名单
+            throw new UnauthorizedHttpException('jwt-auth', '用户认证失败');
         }
 
         return $this->setAuthenticationHeader($next($request), $token);

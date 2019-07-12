@@ -6,8 +6,10 @@ use App\Events\LoginEvent;
 use App\Events\LogoutEvent;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Requests\AuthRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TokenResource;
+use App\Http\Requests\ResetPasswordRequest;
 
 class AuthController extends Controller
 {
@@ -28,6 +30,15 @@ class AuthController extends Controller
     {
         event(new LogoutEvent(JWTAuth::user()));
         JWTAuth::parseToken()->invalidate();
+
+        return $this->response->noContent();
+    }
+
+    public function password(ResetPasswordRequest $request)
+    {
+        $user = $request->user();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
 
         return $this->response->noContent();
     }
