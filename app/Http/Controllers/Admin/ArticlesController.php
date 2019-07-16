@@ -24,9 +24,12 @@ class ArticlesController extends Controller
         return (new ArticleCollection($articles))->withMessage('文章列表获取成功');
     }
 
-    public function store(ArticleRequest $request)
+    public function store(ArticleService $articleService, ArticleRequest $request)
     {
-        $article = Article::query()->create($request->only(['title', 'main', 'category_id']));
+        $article = new Article($request->only(['title', 'main', 'category_id']));
+        $article->sketch = $articleService->generateSketch($request->main);
+        $article->save();
+
         $this->dispatch(new GenerateTags($article));
 
         return $this->response->created();
@@ -43,7 +46,10 @@ class ArticlesController extends Controller
     public function update(ArticleService $articleService, ArticleRequest $request, $id)
     {
         $article = $articleService->findArticleByPrimaryKey($id);
-        $article->update($request->only(['title', 'main', 'category_id']));
+        $article->fill($request->only(['title', 'main', 'category_id']));
+        $article->sketch = $articleService->generateSketch($request->main);
+        $article->save();
+
         $this->dispatch(new GenerateTags($article));
 
         return $this->response->noContent();

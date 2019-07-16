@@ -21,6 +21,8 @@ class CreateArticlesTable extends Migration
             $table->string('title')
                 ->unique()
                 ->comment('文章标题');
+            $table->string('sketch')
+                ->comment('简述');
             $table->text('main')
                 ->comment('正文');
             $table->unsignedInteger('skims')

@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use Parsedown;
 use App\Models\Article;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -17,5 +19,14 @@ class ArticleService
         }
 
         return $article;
+    }
+
+    public function generateSketch(string $markdown): string
+    {
+        $sketch = Parsedown::instance()
+            ->setSafeMode(true)
+            ->text($markdown);
+
+        return Str::limit(strip_tags($sketch), 255);
     }
 }

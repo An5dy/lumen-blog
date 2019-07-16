@@ -11,7 +11,7 @@ class Article extends Model
     const UPPER = 1;// 上架
 
     protected $fillable = [
-        'title', 'main', 'category_id'
+        'title', 'sketch', 'main', 'category_id'
     ];
 
     public function category()
