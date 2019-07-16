@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
-    public function __invoke($id)
+    public function index($id)
     {
         $tag = Tag::query()->findOrFail($id);
         $tag->delete();

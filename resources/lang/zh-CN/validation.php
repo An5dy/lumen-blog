@@ -178,5 +178,6 @@ return [
         'old_password'              => '原密码',
         'new_password'              => '新密码',
         'new_password_confirmation' => '确认密码',
+        'img_path'                  => '图片路径',
     ],
 ];

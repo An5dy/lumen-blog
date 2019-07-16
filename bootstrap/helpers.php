@@ -23,3 +23,20 @@ if (!function_exists('cookie_token')) {
         );
     }
 }
+
+if (!function_exists('generate_filename')) {
+    /**
+     * @use      [生成文件名]
+     * @Author   ze <846562014@qq.com>
+     * @date     2019-07-12 15:30
+     * @param string $suffix
+     * @return string
+     * @throws Exception
+     */
+    function generate_filename(string $suffix = '.jpg'): string
+    {
+        return date('YmdHis', time()) .
+            str_pad(random_int(0, 10000000), 8, 0, STR_PAD_LEFT) .
+            $suffix;
+    }
+}

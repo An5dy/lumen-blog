@@ -12,7 +12,7 @@ $api->version($apiConfig['version'], [
 // 后台 API
 $api->version($apiConfig['version'], [
     'namespace' => 'App\\Http\\Controllers\\Admin',
-    'prefix'    => 'api/admin',
+    'prefix' => 'api/admin',
 ], function ($api) {
     $api->post('login', 'AuthController@login');
     $api->group(['middleware' => 'token.refresh'], function ($api) {
@@ -27,10 +27,12 @@ $api->version($apiConfig['version'], [
         $api->post('categories', 'CategoriesController@store');
         $api->patch('categories/{category}', 'CategoriesController@update');
         $api->delete('categories/{category}', 'CategoriesController@destroy');
-        $api->delete('tags/{tag}', 'TagController');
+        $api->delete('tags/{tag}', 'TagController@index');
         $api->get('about', 'AboutController@index');
         $api->post('about', 'AboutController@updateOrCreate');
         $api->post('password', 'AuthController@password');
+        $api->post('images', 'ImagesController@store');
+        $api->delete('images', 'ImagesController@destroy');
     });
 
     $api->group(['middleware' => 'auth'], function ($api) {
