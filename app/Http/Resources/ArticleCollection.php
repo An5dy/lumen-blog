@@ -20,6 +20,7 @@ class ArticleCollection extends ResourceCollection
                     'likes'         => $item->likes,
                     'comments'      => $item->comments,
                     'created_at'    => $item->created_at->toFormattedDateString(),
+                    'category'      => CategoryResource::make($item->category),
                 ];
             })
         ];

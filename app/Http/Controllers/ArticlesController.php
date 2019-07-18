@@ -13,10 +13,11 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = Article::query()
+            ->with('category')
             ->where('is_published', Article::UPPER)
             ->orderByDesc('created_at')
             ->paginate(10, [
-                'id', 'title', 'sketch', 'skims', 'likes', 'comments', 'created_at'
+                'id', 'category_id', 'title', 'sketch', 'skims', 'likes', 'comments', 'created_at'
             ]);
 
         return (new ArticleCollection($articles))->withMessage('文章列表获取成功');

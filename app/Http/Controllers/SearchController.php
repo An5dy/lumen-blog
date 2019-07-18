@@ -10,10 +10,13 @@ class SearchController extends Controller
 {
     public function index(QueryRequest $request)
     {
-        $articles = Article::search($request->get('query'))
+        $articles = Article::search($request->get('query', ''))
+            ->query(function ($query) {
+                $query->with('category');
+            })
             ->where('is_published', Article::UPPER)
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(1);
 
         return (new ArticleCollection($articles))->withMessage('搜索成功');
     }
