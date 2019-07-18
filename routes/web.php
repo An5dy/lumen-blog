@@ -7,6 +7,8 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version($apiConfig['version'], [
     'namespace' => 'App\\Http\\Controllers',
 ], function ($api) {
+    $api->get('search', 'SearchController@index');
+    $api->get('articles', 'ArticlesController@index');
 });
 
 // 后台 API

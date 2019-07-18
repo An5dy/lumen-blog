@@ -12,5 +12,5 @@ return [
     // 是否复式分割，如“中国人”返回“中国＋人＋中国人”三个词。
     'multi'     => false,
     // 设定将文字自动以二字分词法聚合
-    'duality'   => false
+    'duality'   => false,
 ];

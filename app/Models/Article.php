@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    use Searchable;
+
     const LOWER = 0;// 下架
 
     const UPPER = 1;// 上架
@@ -27,5 +30,10 @@ class Article extends Model
     public function scopeTitle($query, $title)
     {
         return $query->where('title', 'like', '%' . $title . '%');
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->only('id', 'title', 'main');
     }
 }

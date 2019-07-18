@@ -179,5 +179,6 @@ return [
         'new_password'              => '新密码',
         'new_password_confirmation' => '确认密码',
         'img_path'                  => '图片路径',
+        'query'                     => '搜索内容',
     ],
 ];

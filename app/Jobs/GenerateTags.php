@@ -18,8 +18,10 @@ class GenerateTags extends Job
     {
         $tops = Scws::sendText($this->article->main)->getTops(5);
 
+        $this->article->tags()->delete();
+
         foreach ($tops as $top) {
-            $this->article->tags()->firstOrCreate(['title' => $top['word']]);
+            $this->article->tags()->create(['title' => $top['word']]);
         }
     }
 }

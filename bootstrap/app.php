@@ -77,12 +77,14 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+//$app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\ScwsServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+$app->register(App\Providers\LumenScoutServiceProvider::class);
+$app->register(TeamTNT\Scout\TNTSearchScoutServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Overtrue\LaravelLang\TranslationServiceProvider::class);
 $app->register(Iidestiny\LaravelFilesystemOss\OssStorageServiceProvider::class);
@@ -99,6 +101,7 @@ if ($app->environment() !== 'production') {
 $app->configure('app');
 $app->configure('api');
 $app->configure('jwt');
+$app->configure('scout');
 $app->configure('database');
 $app->configure('filesystems');
 

@@ -18,7 +18,7 @@ class ArticlesController extends Controller
             ->with(['category', 'tags'])
             ->orderByDesc('created_at')
             ->paginate(null, [
-                'id', 'category_id', 'title', 'skims', 'likes', 'comments', 'created_at', 'is_publish'
+                'id', 'category_id', 'title', 'skims', 'likes', 'comments', 'created_at', 'is_published'
             ]);
 
         return (new ArticleCollection($articles))->withMessage('文章列表获取成功');
@@ -66,7 +66,7 @@ class ArticlesController extends Controller
     public function upper(ArticleService $articleService, $id)
     {
         $article = $articleService->findArticleByPrimaryKey($id);
-        $article->is_publish = Article::UPPER;
+        $article->is_published = Article::UPPER;
         $article->save();
 
         return $this->response->noContent();
@@ -75,7 +75,7 @@ class ArticlesController extends Controller
     public function lower(ArticleService $articleService, $id)
     {
         $article = $articleService->findArticleByPrimaryKey($id);
-        $article->is_publish = Article::LOWER;
+        $article->is_published = Article::LOWER;
         $article->save();
 
         return $this->response->noContent();

@@ -27,6 +27,6 @@ class ArticleService
             ->setSafeMode(true)
             ->text($markdown);
 
-        return Str::limit(strip_tags($sketch), 255);
+        return Str::limit(strip_tags($sketch), 250);
     }
 }

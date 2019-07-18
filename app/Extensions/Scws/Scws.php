@@ -20,7 +20,7 @@ class Scws
      * @param string $text
      * @return $this
      */
-    public function sendText(string $text):self
+    public function sendText(string $text): self
     {
         $this->scws->{Str::snake(__FUNCTION__)}($text);
 
@@ -34,7 +34,7 @@ class Scws
      * @param int $tops
      * @return array
      */
-    public function getTops(int $tops):array
+    public function getTops(int $tops): array
     {
         return $this->scws->{Str::snake(__FUNCTION__)}($tops);
     }

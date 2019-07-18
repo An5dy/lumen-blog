@@ -15,18 +15,11 @@ class ArticleCollection extends ResourceCollection
                 return [
                     'id'            => $item->id,
                     'title'         => $item->title,
-                    'main'          => $item->main,
+                    'sketch'        => $item->sketch,
                     'skims'         => $item->skims,
                     'likes'         => $item->likes,
                     'comments'      => $item->comments,
                     'created_at'    => $item->created_at->toFormattedDateString(),
-                    'category'      => CategoryResource::make($item->category),
-                    'tags'          => $item->tags->map(function ($tag) {
-                        return [
-                            'id'    => $tag->id,
-                            'title' => $tag->title,
-                        ];
-                    }),
                 ];
             })
         ];

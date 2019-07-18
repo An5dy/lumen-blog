@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
 use App\Services\ArticleService;
 use App\Events\ArticleSkimmedEvent;
 use App\Http\Resources\ArticleResource;
@@ -11,15 +10,14 @@ use App\Http\Resources\ArticleCollection;
 
 class ArticlesController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $articles = Article::query()
-            ->with(['category', 'tags'])
-            ->when($title = $request->get('title', null), function ($query) use ($title) {
-                $query->title($title);
-            })
+            ->where('is_published', Article::UPPER)
             ->orderByDesc('created_at')
-            ->paginate(10);
+            ->paginate(10, [
+                'id', 'title', 'sketch', 'skims', 'likes', 'comments', 'created_at'
+            ]);
 
         return (new ArticleCollection($articles))->withMessage('文章列表获取成功');
     }

@@ -10,7 +10,7 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->boolean('is_publish')
+            $table->boolean('is_published')
                 ->default(0)
                 ->comment('是否发布，默认 0 不发布');
             $table->unsignedBigInteger('category_id');
