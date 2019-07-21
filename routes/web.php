@@ -9,6 +9,9 @@ $api->version($apiConfig['version'], [
 ], function ($api) {
     $api->get('search', 'SearchController@index');
     $api->get('articles', 'ArticlesController@index');
+    $api->get('articles/{article}', 'ArticlesController@show');
+    $api->get('about', 'AboutController@index');
+    $api->get('categories/{category}/articles', 'CategoriesController@articles');
 });
 
 // 后台 API

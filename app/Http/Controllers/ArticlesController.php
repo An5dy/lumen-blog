@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Services\ArticleService;
 use App\Events\ArticleSkimmedEvent;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticleCollection;
@@ -23,10 +22,12 @@ class ArticlesController extends Controller
         return (new ArticleCollection($articles))->withMessage('文章列表获取成功');
     }
 
-    public function show(ArticleService $articleService, $id)
+    public function show($id)
     {
-        $article = $articleService->findArticleByPrimaryKey($id);
-        $article->load('category', 'tags');
+        $article = Article::query()
+            ->with(['category', 'tags'])
+            ->where('is_published', Article::UPPER)
+            ->findOrFail($id);
 
         event(new ArticleSkimmedEvent($article));
 

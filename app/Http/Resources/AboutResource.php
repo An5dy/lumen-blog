@@ -10,6 +10,8 @@ class AboutResource extends Resource
 
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'main' => $this->main,
+        ];
     }
 }
