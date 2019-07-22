@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ArchiveCollection extends ResourceCollection
@@ -16,7 +17,7 @@ class ArchiveCollection extends ResourceCollection
                     return [
                         'id' => $archive->id,
                         'title' => $archive->title,
-                        'created_at' => $archive->created_at->toFormattedDateString(),
+                        'created_at' => Carbon::parse($archive->created_at)->format('M, j'),
                     ];
                 });
             }),
