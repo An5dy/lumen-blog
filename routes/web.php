@@ -12,6 +12,7 @@ $api->version($apiConfig['version'], [
     $api->get('articles/{article}', 'ArticlesController@show');
     $api->get('about', 'AboutController@index');
     $api->get('categories/{category}/articles', 'CategoriesController@articles');
+    $api->get('archives', 'ArchivesController@index');
 });
 
 // 后台 API
