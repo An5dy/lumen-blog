@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Http\Requests\QueryRequest;
-use App\Http\Resources\ArticleCollection;
+use App\Http\Resources\SearchCollection;
 
 class SearchController extends Controller
 {
@@ -16,8 +16,8 @@ class SearchController extends Controller
             })
             ->where('is_published', Article::UPPER)
             ->orderBy('created_at', 'desc')
-            ->paginate(1);
+            ->get();
 
-        return (new ArticleCollection($articles))->withMessage('搜索成功');
+        return (new SearchCollection($articles))->withMessage('搜索成功');
     }
 }
