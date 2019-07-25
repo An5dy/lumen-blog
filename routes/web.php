@@ -1,11 +1,18 @@
 <?php
 
+$router->get('{path:.*}', function () {
+    return view('index');
+});
+
 $apiConfig = config('api');
 $api = app('Dingo\Api\Routing\Router');
 
 // 前台 API
 $api->version($apiConfig['version'], [
     'namespace' => 'App\\Http\\Controllers',
+    'middleware' => 'api.throttle',
+    'limit' => 20,
+    'expires' => 1,
 ], function ($api) {
     $api->get('search', 'SearchController@index');
     $api->get('articles', 'ArticlesController@index');
