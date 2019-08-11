@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
@@ -21,9 +22,9 @@ class CategoriesController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        Category::query()->create($request->only('title'));
+        $category = Category::query()->create($request->only('title'));
 
-        return $this->response->created();
+        return (new CategoryResource($category))->withMessage('分类添加成功');
     }
 
     public function update(CategoryService $categoryService, CategoryRequest $request, $id)

@@ -13,13 +13,14 @@ class ArticleResource extends Resource
         return [
             'id'            => $this->id,
             'title'         => $this->title,
+            'sketch'        => $this->sketch,
             'main'          => $this->main,
             'skims'         => $this->skims,
             'likes'         => $this->likes,
             'comments'      => $this->comments,
             'created_at'    => $this->created_at->toFormattedDateString(),
             'category'      => CategoryResource::make($this->category),
-            'tags'          => TagCollection::make($this->tags),
+            'tags'          => $this->tags->implode('title', ','),
         ];
     }
 }
