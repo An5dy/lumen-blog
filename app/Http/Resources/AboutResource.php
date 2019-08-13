@@ -11,7 +11,7 @@ class AboutResource extends Resource
     public function toArray($request)
     {
         return [
-            'main' => $this->main,
+            'main' => $this->main ?? '',
         ];
     }
 }

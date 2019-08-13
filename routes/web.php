@@ -1,9 +1,5 @@
 <?php
 
-$router->get('{path:.*}', function () {
-    return view('index');
-});
-
 $apiConfig = config('api');
 $api = app('Dingo\Api\Routing\Router');
 
