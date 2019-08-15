@@ -16,7 +16,7 @@ class GenerateTags extends Job
 
     public function handle()
     {
-        $tops = Scws::sendText($this->article->main)->getTops(5);
+        $tops = Scws::sendText($this->article->main)->getTops(10);
 
         $this->article->tags()->delete();
 
