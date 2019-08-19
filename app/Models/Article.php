@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Scopes\IsPublishedScope;
 
 class Article extends Model
 {
@@ -16,6 +17,13 @@ class Article extends Model
     protected $fillable = [
         'title', 'sketch', 'main', 'category_id'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new IsPublishedScope());
+    }
 
     public function category()
     {

@@ -7,6 +7,7 @@ use App\Jobs\GenerateTags;
 use App\Services\ArticleService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Models\Scopes\IsPublishedScope;
 use App\Http\Resources\Admin\ArticleResource;
 use App\Http\Resources\Admin\ArticleCollection;
 
@@ -15,6 +16,7 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = Article::query()
+            ->withoutGlobalScope(IsPublishedScope::class)
             ->with(['category', 'tags'])
             ->orderByDesc('created_at')
             ->paginate(null, [

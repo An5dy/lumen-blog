@@ -13,7 +13,6 @@ class ArticlesController extends Controller
     {
         $articles = Article::query()
             ->with('category')
-            ->where('is_published', Article::UPPER)
             ->orderByDesc('created_at')
             ->paginate(10, [
                 'id', 'category_id', 'title', 'sketch', 'skims', 'likes', 'comments', 'created_at'
@@ -26,7 +25,6 @@ class ArticlesController extends Controller
     {
         $article = Article::query()
             ->with(['category', 'tags'])
-            ->where('is_published', Article::UPPER)
             ->findOrFail($id);
 
         event(new ArticleSkimmedEvent($article));

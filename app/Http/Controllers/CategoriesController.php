@@ -13,7 +13,6 @@ class CategoriesController extends Controller
             ->whereHas('category', function ($query) use ($id) {
                 $query->where('id', $id);
             })
-            ->where('is_published', Article::UPPER)
             ->paginate(10, [
                 'id', 'category_id', 'title', 'sketch', 'skims', 'likes', 'comments', 'created_at'
             ]);

@@ -14,7 +14,6 @@ class SearchController extends Controller
             ->query(function ($query) {
                 $query->with('category');
             })
-            ->where('is_published', Article::UPPER)
             ->orderBy('created_at', 'desc')
             ->get();
 
