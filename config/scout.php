@@ -95,7 +95,7 @@ return [
    */
 
     'tntsearch' => [
-        'storage'       => storage_path(),//必须有可写权限
+        'storage'       => storage_path('indexes'),//必须有可写权限
         'fuzziness'     => env('TNTSEARCH_FUZZINESS', false),// 模糊匹配
         'fuzzy'         => [
             'prefix_length'     => 2,
