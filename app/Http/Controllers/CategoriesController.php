@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Http\Resources\ArticleCollection;
 
 class CategoriesController extends Controller
 {
-    public function articles($id)
+    public function articles(int $id)
     {
+        $categoryIds = Category::getChildrenIds($id);
+
         $articles = Article::query()
-            ->whereHas('category', function ($query) use ($id) {
-                $query->where('id', $id);
-            })
+            ->whereIn('category_id', $categoryIds)
+            ->latest()
             ->paginate(10, [
                 'id', 'category_id', 'title', 'sketch', 'skims', 'likes', 'comments', 'created_at'
             ]);

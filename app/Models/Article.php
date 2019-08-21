@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Scopes\IsPublishedScope;
 
@@ -17,6 +19,10 @@ class Article extends Model
     protected $fillable = [
         'title', 'sketch', 'main', 'category_id'
     ];
+
+    public static $archiveCacheKey = 'archives';
+
+    public static $cacheTag = 'article';
 
     public static function boot()
     {
@@ -43,5 +49,19 @@ class Article extends Model
     public function toSearchableArray()
     {
         return $this->only('id', 'title', 'main');
+    }
+
+    public static function getArchives()
+    {
+        return Cache::tags([self::$cacheTag])
+            ->rememberForever(self::$archiveCacheKey, function () {
+                return Article::query()
+                    ->latest()
+                    ->get(['id', 'title', 'created_at'])
+                    ->each(function ($archive) {
+                        $archive->mark = Carbon::parse($archive->created_at)->format('M, Y');
+                    })
+                    ->groupBy('mark');
+            });
     }
 }

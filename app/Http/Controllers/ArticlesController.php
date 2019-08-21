@@ -13,7 +13,7 @@ class ArticlesController extends Controller
     {
         $articles = Article::query()
             ->with('category')
-            ->orderByDesc('created_at')
+            ->latest()
             ->paginate(10, [
                 'id', 'category_id', 'title', 'sketch', 'skims', 'likes', 'comments', 'created_at'
             ]);

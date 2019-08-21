@@ -21,6 +21,12 @@ class ArticleResource extends Resource
             'created_at'    => $this->created_at->toFormattedDateString(),
             'category'      => CategoryResource::make($this->category),
             'tags'          => $this->tags->implode('title', ','),
+            'categories'    => $this->category->ancestors->map(function ($category) {
+                return [
+                    'id' => $category->id,
+                    'title' => $category->title,
+                ];
+            })
         ];
     }
 }

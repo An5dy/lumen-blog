@@ -13,6 +13,7 @@ class CategoryRequest extends BaseRequest
             case 'POST':
                 return [
                     'title' => 'bail|required|string|unique:categories|max:255',
+                    'category_id' => 'bail|nullable|integer|exists:categories,id',
                 ];
             case 'PUT':
             case 'PATCH':
