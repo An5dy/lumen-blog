@@ -16,6 +16,7 @@ $api->version($apiConfig['version'], [
     $api->get('about', 'AboutController@index');
     $api->get('categories/{category}/articles', 'CategoriesController@articles');
     $api->get('archives', 'ArchivesController@index');
+    $api->get('setting', 'SettingController@index');
 });
 
 // 后台 API
@@ -42,6 +43,8 @@ $api->version($apiConfig['version'], [
         $api->post('password', 'AuthController@password');
         $api->post('images', 'ImagesController@store');
         $api->delete('images', 'ImagesController@destroy');
+        $api->get('setting', 'SettingsController@index');
+        $api->post('setting', 'SettingsController@updateOrCreate');
     });
 
     $api->group(['middleware' => 'auth'], function ($api) {

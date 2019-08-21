@@ -12,6 +12,7 @@ return [
     |
     */
 
-    'failed'   => '用户名或密码错误。',
-    'throttle' => '您的尝试登录次数过多，请 :seconds 秒后再试。',
+    'failed'        => '用户名或密码错误。',
+    'throttle'      => '您的尝试登录次数过多，请 :seconds 秒后再试。',
+    'api_throttle'  => '接口访问次数过于频繁，请 :seconds 秒后再试。',
 ];
