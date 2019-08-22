@@ -10,9 +10,9 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('avatar')->comment('头像');
-            $table->string('title')->comment('标题');
-            $table->string('sketch')->comment('简介');
+            $table->string('avatar')->nullable()->comment('头像');
+            $table->string('title')->nullable()->comment('标题');
+            $table->string('sketch')->nullable()->comment('简介');
         });
     }
 

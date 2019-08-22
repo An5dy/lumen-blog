@@ -12,4 +12,15 @@ class SettingService
             ->orderByDesc('id')
             ->first($columns);
     }
+
+    public function updateOrCreate($attributes)
+    {
+        $setting = $this->getSetting();
+
+        if (empty($setting)) {
+            Setting::query()->create($attributes);
+        } else {
+            $setting->update($attributes);
+        }
+    }
 }

@@ -43,8 +43,9 @@ $api->version($apiConfig['version'], [
         $api->post('password', 'AuthController@password');
         $api->post('images', 'ImagesController@store');
         $api->delete('images', 'ImagesController@destroy');
-        $api->get('setting', 'SettingsController@index');
-        $api->post('setting', 'SettingsController@updateOrCreate');
+        $api->get('settings', 'SettingsController@index');
+        $api->post('settings', 'SettingsController@updateOrCreate');
+        $api->post('settings/avatar', 'SettingsController@avatar');
     });
 
     $api->group(['middleware' => 'auth'], function ($api) {

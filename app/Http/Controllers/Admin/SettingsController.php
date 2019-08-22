@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Setting;
+use App\Services\ImageService;
 use App\Services\SettingService;
+use App\Http\Requests\ImageRequest;
 use App\Http\Controllers\Controller;
-use app\Http\Requests\SettingRequest;
+use App\Http\Requests\SettingRequest;
 use App\Http\Resources\SettingResource;
+use App\Http\Resources\Admin\UploadImageResource;
 
 class SettingsController extends Controller
 {
@@ -19,22 +21,23 @@ class SettingsController extends Controller
 
     public function index()
     {
-        $setting = $this->settingService->getSetting();
+        $setting = $this->settingService->getSetting(['avatar', 'title', 'sketch']);
 
         return new SettingResource($setting);
     }
 
     public function updateOrCreate(SettingRequest $request)
     {
-        $setting = $this->settingService->getSetting();
-        $attributes = $request->only(['avatar', 'title', 'sketch']);
-
-        if (empty($setting)) {
-            Setting::query()->create($attributes);
-        } else {
-            $setting->update($attributes);
-        }
+        $this->settingService->updateOrCreate($request->only(['title', 'sketch']));
 
         return $this->response->noContent();
+    }
+
+    public function avatar(ImageService $imageService, ImageRequest $request)
+    {
+        $path = $imageService->upload($request->image);
+        $this->settingService->updateOrCreate(['avatar' => $path]);
+
+        return (new UploadImageResource(compact('path')))->withMessage('头像上传成功');
     }
 }
