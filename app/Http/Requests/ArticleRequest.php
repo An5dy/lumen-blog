@@ -14,7 +14,7 @@ class ArticleRequest extends BaseRequest
             case 'POST':
                 return [
                     'category_id' => $this->categoryIdValidateRules(),
-                    'title' => 'bail|required|string|unique:articles|max:255',
+                    'title' => 'bail|required|string|unique:articles|max:100',
                     'main' => 'bail|required|string',
                 ];
             case 'PUT':
@@ -27,7 +27,7 @@ class ArticleRequest extends BaseRequest
                         'required',
                         'string',
                         Rule::unique('articles')->ignore($id),
-                        'max:255',
+                        'max:100',
                     ],
                     'main' => 'bail|required|string',
                 ];

@@ -7,8 +7,8 @@ class SettingRequest extends BaseRequest
     public function rules()
     {
         return [
-            'title' => 'bail|required|string',
-            'sketch' => 'bail|required|string',
+            'title' => 'bail|required|string|max:50',
+            'sketch' => 'bail|required|string|max:255',
         ];
     }
 }

@@ -12,7 +12,7 @@ class CategoryRequest extends BaseRequest
         switch ($this->method()) {
             case 'POST':
                 return [
-                    'title' => 'bail|required|string|unique:categories|max:255',
+                    'title' => 'bail|required|string|unique:categories|max:20',
                     'category_id' => 'bail|nullable|integer|exists:categories,id',
                 ];
             case 'PUT':
@@ -24,7 +24,7 @@ class CategoryRequest extends BaseRequest
                         'required',
                         'string',
                         Rule::unique('categories')->ignore($id),
-                        'max:255',
+                        'max:20',
                     ],
                 ];
         }
