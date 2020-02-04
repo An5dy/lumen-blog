@@ -17,7 +17,7 @@ class ArchiveCollection extends ResourceCollection
                     return [
                         'id' => $archive->id,
                         'title' => $archive->title,
-                        'created_at' => Carbon::parse($archive->created_at)->format('M, j'),
+                        'created_at' => $archive->created_at->toDateString(),
                     ];
                 });
             }),
