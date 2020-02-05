@@ -18,7 +18,7 @@ class ArticleResource extends Resource
             'skims'         => $this->skims,
             'likes'         => $this->likes,
             'comments'      => $this->comments,
-            'created_at'    => $this->created_at->toFormattedDateString(),
+            'created_at'    => $this->created_at->toDateTimeString(),
             'category'      => CategoryResource::make($this->category),
             'tags'          => $this->tags->implode('title', ','),
             'categories'    => $this->category->ancestors->map(function ($category) {

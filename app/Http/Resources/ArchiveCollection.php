@@ -17,7 +17,7 @@ class ArchiveCollection extends ResourceCollection
                     return [
                         'id' => $archive->id,
                         'title' => $archive->title,
-                        'created_at' => $archive->created_at->toDateString(),
+                        'created_at' => $archive->created_at->toDatetimeString(),
                     ];
                 });
             }),
