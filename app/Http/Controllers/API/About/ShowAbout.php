@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\About;
 
 use App\Models\About;
 use App\Services\AboutService;
-use App\Http\Resources\AboutResource;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Resources\AboutResource;
 
-class AboutController extends Controller
+class ShowAbout extends Controller
 {
-    public function index(AboutService $aboutService)
+    public function __invoke(AboutService $aboutService)
     {
         $about = Cache::rememberForever(About::$cacheKey, function () use ($aboutService) {
             return $aboutService->getAbout();

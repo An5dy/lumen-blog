@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\Article;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleCollection;
 
-class CategoriesController extends Controller
+class ArticleCategory extends Controller
 {
-    public function articles(int $id)
+    public function __invoke(int $id)
     {
         $categoryIds = Category::getChildrenIds($id);
 

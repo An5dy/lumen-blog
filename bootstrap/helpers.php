@@ -40,3 +40,17 @@ if (!function_exists('generate_filename')) {
             $suffix;
     }
 }
+
+if (!function_exists('is_admin_path')) {
+    /**
+     * @use         [是否是 admin 路由]
+     * @Author      an5dy <846562014@qq.com>
+     * @datetime    2020/2/5 11:46 下午
+     * @param string $pattern
+     * @return bool
+     */
+    function is_admin_path($pattern = 'api/admin/*'): bool
+    {
+        return app('request')->is($pattern);
+    }
+}

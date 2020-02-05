@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\Archive;
 
-use Carbon\Carbon;
 use App\Models\Article;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\ArchiveCollection;
 
-class ArchivesController extends Controller
+class IndexArchive extends Controller
 {
-    public function index()
+    public function __invoke()
     {
         $archives = Article::getArchives();
 

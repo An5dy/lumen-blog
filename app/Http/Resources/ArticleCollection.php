@@ -19,8 +19,12 @@ class ArticleCollection extends ResourceCollection
                     'skims'         => $item->skims,
                     'likes'         => $item->likes,
                     'comments'      => $item->comments,
+                    'is_published'  => $item->is_published,
                     'created_at'    => $item->created_at->toDatetimeString(),
                     'category'      => CategoryResource::make($item->category),
+                    'tags'          => $item->tags->map(function ($tag) {
+                        return TagResource::make($tag);
+                    }),
                 ];
             })
         ];

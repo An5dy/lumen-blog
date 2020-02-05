@@ -12,10 +12,6 @@ class Article extends Model
 {
     use Searchable;
 
-    const LOWER = 0;// 下架
-
-    const UPPER = 1;// 上架
-
     protected $fillable = [
         'title', 'sketch', 'main', 'category_id'
     ];

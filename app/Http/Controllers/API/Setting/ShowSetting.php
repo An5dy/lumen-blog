@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\Setting;
 
 use App\Models\Setting;
 use App\Services\SettingService;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Resources\SettingResource;
 
-class SettingController extends Controller
+class ShowSetting extends Controller
 {
-    public function index(SettingService $settingService)
+    public function __invoke(SettingService $settingService)
     {
         $setting = Cache::rememberForever(Setting::$cacheKey, function () use ($settingService) {
 

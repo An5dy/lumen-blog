@@ -1,23 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\API\About;
 
 use App\Models\About;
 use App\Services\AboutService;
 use App\Http\Requests\AboutRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AboutResource;
 
-class AboutController extends Controller
+class UpdateAbout extends Controller
 {
-    public function index(AboutService $aboutService)
-    {
-        $about = $aboutService->getAbout();
-
-        return (new AboutResource($about))->withMessage('操作成功');
-    }
-
-    public function updateOrCreate(AboutService $aboutService, AboutRequest $request)
+    public function __invoke(AboutService $aboutService, AboutRequest $request)
     {
         $about = $aboutService->getAbout();
 

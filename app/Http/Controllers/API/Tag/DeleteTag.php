@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\API\Tag;
 
 use App\Models\Tag;
 use App\Http\Controllers\Controller;
 
-class TagController extends Controller
+class DeleteTag extends Controller
 {
-    public function index($id)
+    public function __invoke(int $id)
     {
         $tag = Tag::query()->findOrFail($id);
         $tag->delete();

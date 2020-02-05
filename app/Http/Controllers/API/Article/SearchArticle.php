@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\Article;
 
 use App\Models\Article;
 use App\Http\Requests\QueryRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\SearchCollection;
 
-class SearchController extends Controller
+class SearchArticle extends Controller
 {
-    public function index(QueryRequest $request)
+    public function __invoke(QueryRequest $request)
     {
         $articles = Article::search($request->get('query', ''))
             ->query(function ($query) {
@@ -17,6 +18,6 @@ class SearchController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return (new SearchCollection($articles))->withMessage('搜索成功');
+        return (new SearchCollection($articles))->withMessage('搜索成功。');
     }
 }
