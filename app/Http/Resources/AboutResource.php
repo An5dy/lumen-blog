@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class AboutResource extends Resource
+class AboutResource extends JsonResource
 {
     use Helpers;
 

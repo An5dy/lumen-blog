@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Symfony\Component\HttpFoundation\Cookie;
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class TokenResource extends Resource
+class TokenResource extends JsonResource
 {
     use Helpers;
 
