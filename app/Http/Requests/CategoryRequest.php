@@ -18,6 +18,7 @@ class CategoryRequest extends BaseRequest
             case 'PUT':
             case 'PATCH':
                 $id = Arr::last($this->route())['category'];
+
                 return [
                     'title' => [
                         'bail',

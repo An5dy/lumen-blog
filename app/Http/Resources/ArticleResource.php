@@ -26,7 +26,7 @@ class ArticleResource extends JsonResource
                     'id' => $category->id,
                     'title' => $category->title,
                 ];
-            })
+            }),
         ];
     }
 }

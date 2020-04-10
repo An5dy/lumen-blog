@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use Laravel\Scout\Searchable;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Scopes\IsPublishedScope;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
     use Searchable;
 
     protected $fillable = [
-        'title', 'sketch', 'main', 'category_id'
+        'title', 'sketch', 'main', 'category_id',
     ];
 
     public static $archiveCacheKey = 'archives';
@@ -39,7 +39,7 @@ class Article extends Model
 
     public function scopeTitle($query, $title)
     {
-        return $query->where('title', 'like', '%' . $title . '%');
+        return $query->where('title', 'like', '%'.$title.'%');
     }
 
     public function toSearchableArray()
@@ -51,7 +51,7 @@ class Article extends Model
     {
         return Cache::tags([self::$cacheTag])
             ->rememberForever(self::$archiveCacheKey, function () {
-                return Article::query()
+                return self::query()
                     ->latest()
                     ->get(['id', 'title', 'created_at'])
                     ->each(function ($archive) {

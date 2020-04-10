@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\About;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AboutRequest;
 use App\Models\About;
 use App\Services\AboutService;
-use App\Http\Requests\AboutRequest;
-use App\Http\Controllers\Controller;
 
 class UpdateAbout extends Controller
 {

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Events\LoginEvent;
-use App\Http\Requests\AuthRequest;
-use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequest;
 use App\Http\Resources\TokenResource;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class Login extends Controller
 {

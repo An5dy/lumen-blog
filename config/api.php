@@ -168,7 +168,7 @@ return [
     */
 
     'auth' => [
-//        'jwt' => Dingo\Api\Auth\Provider\JWT::class,
+        //        'jwt' => Dingo\Api\Auth\Provider\JWT::class,
     ],
 
     /*

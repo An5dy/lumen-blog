@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API\Tag;
 
-use App\Models\Tag;
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 
 class DeleteTag extends Controller
 {

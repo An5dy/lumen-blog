@@ -3,9 +3,9 @@
 namespace App\Models\Scopes;
 
 use App\Enums\ArticlePublishStatus;
-use Illuminate\Database\Eloquent\Scope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
 
 class IsPublishedScope implements Scope
 {

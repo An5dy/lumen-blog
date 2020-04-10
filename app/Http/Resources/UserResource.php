@@ -12,7 +12,7 @@ class UserResource extends JsonResource
     {
         return [
             'name'      => $this->name,
-            'account'   => $this->account
+            'account'   => $this->account,
         ];
     }
 }

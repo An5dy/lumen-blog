@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\Article;
 
-use App\Jobs\FlushArticleCache;
-use App\Services\ArticleService;
 use App\Enums\ArticlePublishStatus;
 use App\Http\Controllers\Controller;
+use App\Jobs\FlushArticleCache;
+use App\Services\ArticleService;
 
 class TogglePublish extends Controller
 {

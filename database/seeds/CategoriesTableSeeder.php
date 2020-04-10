@@ -13,8 +13,8 @@ class CategoriesTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         Category::query()->insert([
-           [ 'title' => 'PHP'],
-           [ 'title' => 'JavaScript'],
+            ['title' => 'PHP'],
+            ['title' => 'JavaScript'],
         ]);
     }
 }

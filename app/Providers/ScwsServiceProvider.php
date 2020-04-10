@@ -11,7 +11,7 @@ class ScwsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/scws.php', 'scws');
+        $this->mergeConfigFrom(__DIR__.'/../../config/scws.php', 'scws');
 
         $this->app->singleton('scws', function ($app) {
             $config = $app->config->get('scws');
