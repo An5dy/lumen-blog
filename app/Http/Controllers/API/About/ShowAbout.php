@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API\About;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\AboutResource;
 use App\Models\About;
 use App\Services\AboutService;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Resources\AboutResource;
 
 class ShowAbout extends Controller
 {

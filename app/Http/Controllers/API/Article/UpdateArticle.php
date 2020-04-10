@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API\Article;
 
-use App\Jobs\GenerateTags;
-use App\Jobs\FlushArticleCache;
-use App\Services\ArticleService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Jobs\FlushArticleCache;
+use App\Jobs\GenerateTags;
+use App\Services\ArticleService;
 
 class UpdateArticle extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\Category;
 
-use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
+use App\Models\Category;
 
 class IndexCategory extends Controller
 {

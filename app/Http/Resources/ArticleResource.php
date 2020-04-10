@@ -26,7 +26,7 @@ class ArticleResource extends Resource
                     'id' => $category->id,
                     'title' => $category->title,
                 ];
-            })
+            }),
         ];
     }
 }

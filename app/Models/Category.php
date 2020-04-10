@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
@@ -21,7 +21,7 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     public function getParentIdsAttribute()
@@ -45,7 +45,7 @@ class Category extends Model
     public static function getCategoryTree(): Collection
     {
         return Cache::rememberForever(self::$cacheKey, function () {
-            $categories = Category::query()
+            $categories = self::query()
                 ->get(['id', 'title', 'parent_id', 'level'])
                 ->toArray();
 
@@ -56,7 +56,7 @@ class Category extends Model
             $tree = [];
             foreach ($items as $key => $item) {
                 if (isset($items[$item['parent_id']])) {
-                    $items[$item['parent_id']]['children'][] = &$items[$key];// 引用子集
+                    $items[$item['parent_id']]['children'][] = &$items[$key]; // 引用子集
                 } else {
                     $tree[] = &$items[$key];
                 }

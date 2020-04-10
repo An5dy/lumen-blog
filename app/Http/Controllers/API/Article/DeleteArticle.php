@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\Article;
 
+use App\Http\Controllers\Controller;
 use App\Jobs\FlushArticleCache;
 use App\Services\ArticleService;
-use App\Http\Controllers\Controller;
 
 class DeleteArticle extends Controller
 {

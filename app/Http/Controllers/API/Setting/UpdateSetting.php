@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\Setting;
 
-use App\Services\SettingService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingRequest;
+use App\Services\SettingService;
 
 class UpdateSetting extends Controller
 {

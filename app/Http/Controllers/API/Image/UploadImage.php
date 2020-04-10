@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\Image;
 
-use Illuminate\Http\Request;
-use App\Services\ImageService;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UploadImageResource;
+use App\Services\ImageService;
+use Illuminate\Http\Request;
 
 class UploadImage extends Controller
 {

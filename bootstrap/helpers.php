@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Cookie;
 
-if (!function_exists('cookie_token')) {
+if (! function_exists('cookie_token')) {
     /**
      * @use      [cookie 设置 token]
      * @Author   ze <846562014@qq.com>
@@ -15,7 +15,7 @@ if (!function_exists('cookie_token')) {
     {
         return new Cookie('token',
             $token,
-            Carbon::now()->addMinutes((int)config('jwt.ttl')),
+            Carbon::now()->addMinutes((int) config('jwt.ttl')),
             null,
             null,
             false,
@@ -24,7 +24,7 @@ if (!function_exists('cookie_token')) {
     }
 }
 
-if (!function_exists('generate_filename')) {
+if (! function_exists('generate_filename')) {
     /**
      * @use      [生成文件名]
      * @Author   ze <846562014@qq.com>
@@ -35,13 +35,13 @@ if (!function_exists('generate_filename')) {
      */
     function generate_filename(string $suffix = '.jpg'): string
     {
-        return date('YmdHis', time()) .
-            str_pad(random_int(0, 10000000), 8, 0, STR_PAD_LEFT) .
+        return date('YmdHis', time()).
+            str_pad(random_int(0, 10000000), 8, 0, STR_PAD_LEFT).
             $suffix;
     }
 }
 
-if (!function_exists('is_admin_path')) {
+if (! function_exists('is_admin_path')) {
     /**
      * @use         [是否是 admin 路由]
      * @Author      an5dy <846562014@qq.com>

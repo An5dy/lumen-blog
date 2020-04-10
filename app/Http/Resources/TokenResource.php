@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Http\Resources\Json\Resource;
 
 class TokenResource extends Resource
@@ -13,8 +12,8 @@ class TokenResource extends Resource
     {
         return [
             'access_token'  => $this->resource['token'],
-            'expires_in'    => (int)config('jwt.ttl'),
-            'token_type'    => 'Bearer'
+            'expires_in'    => (int) config('jwt.ttl'),
+            'token_type'    => 'Bearer',
         ];
     }
 }

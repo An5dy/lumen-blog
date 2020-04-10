@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API\Category;
 
-use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
+use App\Services\CategoryService;
 
 class DeleteCategory extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use Parsedown;
 use App\Models\Article;
 use Illuminate\Support\Str;
+use Parsedown;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

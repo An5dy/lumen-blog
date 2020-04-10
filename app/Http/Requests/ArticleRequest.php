@@ -20,6 +20,7 @@ class ArticleRequest extends BaseRequest
             case 'PUT':
             case 'PATCH':
                 $id = Arr::last($this->route())['article'];
+
                 return [
                     'category_id' => $this->categoryIdValidateRules(),
                     'title' => [
@@ -41,7 +42,7 @@ class ArticleRequest extends BaseRequest
             'required',
             'integer',
             function ($attribute, $value, $fail) {
-                if (!Category::query()->find($value)) {
+                if (! Category::query()->find($value)) {
                     return $fail('文章分类不存在');
                 }
             },

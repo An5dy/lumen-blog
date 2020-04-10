@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Laravel\Scout\EngineManager;
-use Laravel\Scout\ScoutServiceProvider;
 use Laravel\Scout\Console\FlushCommand;
 use Laravel\Scout\Console\ImportCommand;
+use Laravel\Scout\EngineManager;
+use Laravel\Scout\ScoutServiceProvider;
 
 class LumenScoutServiceProvider extends ScoutServiceProvider
 {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\Article;
 
-use App\Models\Article;
-use App\Http\Requests\QueryRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QueryRequest;
 use App\Http\Resources\SearchCollection;
+use App\Models\Article;
 
 class SearchArticle extends Controller
 {
