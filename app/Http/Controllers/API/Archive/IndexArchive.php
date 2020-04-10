@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\Archive;
 
-use App\Models\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArchiveCollection;
+use App\Models\Article;
 
 class IndexArchive extends Controller
 {

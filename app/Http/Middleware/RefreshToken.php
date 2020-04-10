@@ -4,11 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
 class RefreshToken extends BaseMiddleware
 {
@@ -23,7 +23,7 @@ class RefreshToken extends BaseMiddleware
             throw new UnauthorizedHttpException('jwt-auth', '用户认证失败');
         } catch (TokenExpiredException $exception) {
             try {
-                $token = $this->auth->parseToken()->refresh();// 刷新 token
+                $token = $this->auth->parseToken()->refresh(); // 刷新 token
                 // 使用一次性登录以保证此次请求的成功
                 Auth::onceUsingId($this->auth
                     ->manager()

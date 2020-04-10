@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API\Setting;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ImageRequest;
+use App\Http\Resources\UploadImageResource;
 use App\Services\ImageService;
 use App\Services\SettingService;
-use App\Http\Requests\ImageRequest;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\UploadImageResource;
 
 class UpdateAvatar extends Controller
 {

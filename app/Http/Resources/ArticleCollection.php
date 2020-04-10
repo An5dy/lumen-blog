@@ -26,7 +26,7 @@ class ArticleCollection extends ResourceCollection
                         return TagResource::make($tag);
                     }),
                 ];
-            })
+            }),
         ];
     }
 }

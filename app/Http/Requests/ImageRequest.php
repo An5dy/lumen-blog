@@ -13,7 +13,7 @@ class ImageRequest extends BaseRequest
                 ];
             case 'DELETE':
                 return [
-                    'img_path' => 'bail|required|url'
+                    'img_path' => 'bail|required|url',
                 ];
         }
     }

@@ -10,7 +10,7 @@ class CategoryService
 {
     public function findCategoryByPrimaryKey($primaryKey)
     {
-        $category =  Category::query()->find($primaryKey);
+        $category = Category::query()->find($primaryKey);
 
         if (empty($category)) {
             throw  new HttpException(Response::HTTP_NOT_FOUND, '分类不存在');

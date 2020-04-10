@@ -25,7 +25,7 @@ $api->version(
         $api->post('admin/logout', 'Auth\Logout');
         $api->group([
             'prefix' => 'admin',
-            'middleware' => 'token.refresh'
+            'middleware' => 'token.refresh',
         ], function (Router $api) {
             $api->post('password', 'Auth\UpdatePassword');
             $api->post('images', 'Image\UploadImage');

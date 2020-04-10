@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\Category;
 
-use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Services\CategoryService;
 
 class UpdateCategory extends Controller
 {

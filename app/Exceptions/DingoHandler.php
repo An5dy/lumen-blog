@@ -12,7 +12,7 @@ class DingoHandler extends Handler
         // 重写访问接口限速异常
         if ($exception instanceof RateLimitExceededException) {
             $this->setReplacements([
-                ':message' => trans('auth.api_throttle', ['seconds' => $exception->getHeaders()['Retry-After']])
+                ':message' => trans('auth.api_throttle', ['seconds' => $exception->getHeaders()['Retry-After']]),
             ]);
         }
 

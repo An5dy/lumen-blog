@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\Image;
 
-use App\Services\ImageService;
-use App\Http\Requests\ImageRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImageRequest;
+use App\Services\ImageService;
 
 class DeleteImage extends Controller
 {

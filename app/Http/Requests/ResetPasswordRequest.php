@@ -8,7 +8,6 @@ class ResetPasswordRequest extends BaseRequest
 {
     public function rules()
     {
-
         return [
             'old_password' => [
                 'bail',
@@ -16,10 +15,10 @@ class ResetPasswordRequest extends BaseRequest
                 'string',
                 function ($attribute, $value, $fail) {
                     $user = $this->user();
-                    if (!Hash::check($value, $user->password)) {
+                    if (! Hash::check($value, $user->password)) {
                         return $fail('原密码错误');
                     }
-                }
+                },
             ],
             'new_password' => 'bail|required|string|confirmed',
         ];

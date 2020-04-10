@@ -43,7 +43,7 @@ class Scws
     {
         $this->scws = scws_new();
         foreach ($config as $key => $value) {
-            $this->scws->{'set_' . $key}($value);
+            $this->scws->{'set_'.$key}($value);
         }
     }
 

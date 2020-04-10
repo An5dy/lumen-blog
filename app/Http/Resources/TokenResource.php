@@ -12,8 +12,8 @@ class TokenResource extends JsonResource
     {
         return [
             'access_token'  => $this->resource['token'],
-            'expires_in'    => (int)config('jwt.ttl'),
-            'token_type'    => 'Bearer'
+            'expires_in'    => (int) config('jwt.ttl'),
+            'token_type'    => 'Bearer',
         ];
     }
 }

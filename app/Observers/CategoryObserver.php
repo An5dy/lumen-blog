@@ -11,9 +11,9 @@ class CategoryObserver
     {
         $level = 0;
         $path = '-';
-        if (!is_null($category->parent_id)) {
+        if (! is_null($category->parent_id)) {
             $level = $category->parent->level + 1;
-            $path = $category->parent->path . $category->parent_id . $path;
+            $path = $category->parent->path.$category->parent_id.$path;
         }
         $category->level = $level;
         $category->path = $path;

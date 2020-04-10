@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\Article;
 
-use App\Services\ArticleService;
 use App\Events\ArticleSkimmedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
+use App\Services\ArticleService;
 
 class ShowArticle extends Controller
 {
@@ -14,7 +14,7 @@ class ShowArticle extends Controller
         $article = $articleService->findArticleByPrimaryKey($id);
         $article->load('category', 'tags');
 
-        if (!is_admin_path()) {
+        if (! is_admin_path()) {
             event(new ArticleSkimmedEvent($article));
         }
 

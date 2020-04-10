@@ -13,7 +13,7 @@ class PruneOldToken
         if ($token = $user->api_token) {
             $oldToken = JWTAuth::setToken($token);
             if ($oldToken->check()) {
-                $oldToken->invalidate();// 失效旧 token
+                $oldToken->invalidate(); // 失效旧 token
             }
         }
 
