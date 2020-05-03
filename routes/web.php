@@ -5,7 +5,7 @@ use Dingo\Api\Routing\Router;
 $apiConfig = config('api');
 $api = app(Router::class);
 
-\Illuminate\Support\Facades\Route::get('api/upload/verify', 'API\UploadController@verify');
+\Illuminate\Support\Facades\Route::post('api/upload/verify', 'API\UploadController@verify');
 
 $api->version(
     $apiConfig['version'],
