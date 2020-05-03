@@ -14,6 +14,8 @@ $api->version(
         'expires' => 1,
     ],
     function (Router $api) {
+        $api->get('upload/direct', 'UploadController@direct');
+        $api->get('upload/verify', 'UploadController@verify');
         $api->get('search', 'Article\SearchArticle');
         $api->get('articles', 'Article\IndexArticle');
         $api->get('articles/{article}', 'Article\ShowArticle');

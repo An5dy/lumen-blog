@@ -25,7 +25,7 @@ class ImageService
 
     public function delete(string $imgPath): bool
     {
-        $imagePath = $this->directory.strrchr($imgPath, '/');
+        $imagePath = $this->directory . strrchr($imgPath, '/');
 
         if (Storage::exists($imagePath)) {
             try {
@@ -36,5 +36,15 @@ class ImageService
         }
 
         throw new BlogException('图片删除失败');
+    }
+
+    public function directUpload()
+    {
+        return Storage::signatureConfig(
+            $prefix = '/',
+            $callBackUrl = '',
+            $customData = [],
+            $expire = 30
+        );
     }
 }
