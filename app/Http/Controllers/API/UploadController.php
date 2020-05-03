@@ -20,6 +20,7 @@ class UploadController extends Controller
 
     public function verify()
     {
+        Log::info('server:', $_SERVER);;
         [$verify, $data] = Storage::verify();
 
         if (!$verify) {
