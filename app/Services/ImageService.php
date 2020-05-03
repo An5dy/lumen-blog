@@ -25,7 +25,7 @@ class ImageService
 
     public function delete(string $imgPath): bool
     {
-        $imagePath = $this->directory . strrchr($imgPath, '/');
+        $imagePath = $this->directory.strrchr($imgPath, '/');
 
         if (Storage::exists($imagePath)) {
             try {
