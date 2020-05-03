@@ -21,7 +21,7 @@ class UploadController extends Controller
     {
         [$verify, $data] = Storage::verify();
 
-        if (!$verify) {
+        if (! $verify) {
             return response()->json($data, 500);
         }
 
